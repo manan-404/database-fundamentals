@@ -1,0 +1,23 @@
+-- Set isolation level to REPEATABLE READ (default in MySQL)
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+START TRANSACTION;
+UPDATE employees SET salary = salary * 1.05 WHERE department_id = 10;
+COMMIT;
+
+-- Set isolation level to READ COMMITTED
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+START TRANSACTION;
+SELECT * FROM employees WHERE department_id = 10;
+COMMIT;
+
+-- Set isolation level to READ UNCOMMITTED (lowest isolation)
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+START TRANSACTION;
+SELECT * FROM employees WHERE department_id = 10;
+COMMIT;
+
+-- Set isolation level to SERIALIZABLE (highest isolation)
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+START TRANSACTION;
+SELECT * FROM employees WHERE department_id = 10;
+COMMIT;
